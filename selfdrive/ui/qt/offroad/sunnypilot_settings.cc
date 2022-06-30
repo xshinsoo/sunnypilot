@@ -220,6 +220,11 @@ SPControlsPanel::SPControlsPanel(QWidget* parent) : QWidget(parent) {
   QVBoxLayout* speedLimitSub = new QVBoxLayout(this);
   QWidget* speedOffsetMain = new QWidget(this);
   QVBoxLayout* speedOffsetSub = new QVBoxLayout(this);
+<<<<<<< HEAD
+=======
+  QWidget* dlpMain = new QWidget(this);
+  QVBoxLayout* dlpSub = new QVBoxLayout(this);
+>>>>>>> upstream/0.8.14-prod-c3
 
   ParamControl *madsControl = new ParamControl("EnableMads",
                                                "Enable M.A.D.S.",
@@ -272,6 +277,33 @@ SPControlsPanel::SPControlsPanel(QWidget* parent) : QWidget(parent) {
   if (!Params().getBool("EnableMads"))
     madsMainControl->hide();
 
+<<<<<<< HEAD
+=======
+  ParamControl *dlpControl = new ParamControl("EndToEndToggle",
+                                              "Enable Dynamic Lane Profile",
+                                              "Enable toggle to use Dynamic Lane Profile. Disable toggle to use Laneline only.",
+                                              "../assets/offroad/icon_road.png");
+  QObject::connect(uiState(), &UIState::offroadTransition, [=](bool offroad) {
+    dlpControl->setEnabled(offroad);
+  });
+  ParamControl *dlpCurve = new ParamControl("VisionCurveLaneless",
+                                            "Laneless for Curves in \"Auto lane\"",
+                                            "While in Auto Lane, switch to Laneless for current/future curves.",
+                                            "../assets/offroad/icon_blank.png");
+  dlpSub->addWidget(dlpCurve);
+  dlpMain->setLayout(dlpSub);
+  QObject::connect(dlpControl, &ToggleControl::toggleFlipped, [=](bool state) {
+    if (state) {
+      dlpMain->show();
+    } else {
+      dlpMain->hide();
+    }
+  });
+
+  main_layout->addWidget(dlpControl);
+  main_layout->addWidget(dlpMain);
+
+>>>>>>> upstream/0.8.14-prod-c3
   main_layout->addWidget(horizontal_line());
   main_layout->addWidget(new AutoLaneChangeTimer());
   main_layout->addWidget(horizontal_line());

@@ -421,7 +421,11 @@ void NvgWindow::updateState(const UIState &s) {
   setProperty("lead_status", leadOne.getStatus());
   setProperty("angleSteers", carState.getSteeringAngleDeg());
   setProperty("steerAngleDesired", cs.getLateralControlState().getPidState().getSteeringAngleDesiredDeg());
+<<<<<<< HEAD
   setProperty("distanceTraveled", carState.getDistanceTraveled());
+=======
+  setProperty("memoryUsagePercent", sm["deviceState"].getDeviceState().getMemoryUsagePercent());
+>>>>>>> upstream/0.8.14-prod-c3
   setProperty("devUiEnabled", s.scene.dev_ui_enabled);
   setProperty("devUiRow", s.scene.dev_ui_row);
   setProperty("gpsAccuracy", gpsLocationExternal.getAccuracy());
@@ -950,6 +954,7 @@ void NvgWindow::drawRightDevUi(QPainter &p, int x, int y) {
     ry = y + rh;
   }
 
+<<<<<<< HEAD
   // Add Traveled Distance in Current Drive
   // Unit: Km if metric, else Miles
   if (true) {
@@ -966,6 +971,21 @@ void NvgWindow::drawRightDevUi(QPainter &p, int x, int y) {
     }
 
     rh += drawDevUiElementRight(p, x, ry, val_str, "TRIP", units_str, valueColor);
+=======
+  // Add Device Memory Usage
+  // Unit: Percent
+  if (true) {
+    char val_str[16];
+    QColor valueColor = QColor(255, 255, 255, 255);
+
+    if (memoryUsagePercent > 75) {
+      valueColor = QColor(255, 188, 0, 255);
+    }
+
+    snprintf(val_str, sizeof(val_str), "%d%s", (int)memoryUsagePercent, "%");
+
+    rh += drawDevUiElementRight(p, x, ry, val_str, "MEM %", "", valueColor);
+>>>>>>> upstream/0.8.14-prod-c3
     ry = y + rh;
   }
 

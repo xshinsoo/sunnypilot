@@ -87,6 +87,10 @@ def manager_init() -> None:
     ("TorqueMaxLatAccel", "25"),
     ("UploadRaw", "0"),
     ("UploadHiRes", "0"),
+<<<<<<< HEAD
+=======
+    ("VisionCurveLaneless", "0"),
+>>>>>>> upstream/0.8.14-prod-c3
     ("VisionTurnSpeedControl", "1"),
     ("VwAccType", "0"),
   ]

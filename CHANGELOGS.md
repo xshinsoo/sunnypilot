@@ -1,8 +1,27 @@
+<<<<<<< HEAD
 sunnypilot - Version 0.8.14-1 (2022-06-27)
 ========================
 * HOTFIX🛠: Honda, Toyota, Volkswagen now initialized correctly with Torque Lateral Live Tune
 
 sunnypilot - Version 0.8.14-1 (2022-06-27)
+=======
+sunnypilot - Version 0.8.14-1.3 (2022-06-29)
+========================
+* Hyundai/Kia/Genesis
+  * NEW❗: MADS: Add GAP/Distance button on the steering wheel to engage/disengage lateral control
+    * To engage/disengage lateral control: Hold the button for 0.5 second
+* NEW❗: Dynamic Lane Profile: Add toggle to enable "Laneless for Curves in Auto Lane"
+* HOTFIX🛠: Improve Torque lateral control and reduce ping pong for some Toyota cars
+  * Torque control: higher low speed gains and better steering angle deadzone logic
+* Developer UI: Remove Distance Traveled, replace with Memory Usage %
+  * This may have a potential to fix the Low Memory alert that may appear
+
+sunnypilot - Version 0.8.14-1.2 (2022-06-27)
+========================
+* HOTFIX🛠: Honda, Toyota, Volkswagen now initialized correctly with Torque Lateral Live Tune
+
+sunnypilot - Version 0.8.14-1.1 (2022-06-27)
+>>>>>>> upstream/0.8.14-prod-c3
 ========================
 * NEW❗: Added toggle to enable updates for sunnypilot
 * HOTFIX🛠: Volkswagen car list now displays properly in Force Car Recognition menu

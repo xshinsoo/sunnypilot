@@ -45,6 +45,7 @@ class CarState(CarStateBase):
     self.lfa_enabled = None
     self.prev_lfa_enabled = None
 
+    self.mads_hold_counter = 0.
     self.prev_cruiseState_enabled = False
 
     self.acc_mads_combo = None
@@ -156,6 +157,13 @@ class CarState(CarStateBase):
         if (self.prev_mads_enabled != 1 and self.mads_enabled == 1) or \
           (self.prev_lfa_enabled != 1 and self.lfa_enabled == 1):
           self.madsEnabled = not self.madsEnabled
+        if self.cruise_buttons[-1] == 3:
+          self.mads_hold_counter += 1
+          if self.mads_hold_counter > 50:
+            self.mads_hold_counter = 0
+            self.madsEnabled = not self.madsEnabled
+        else:
+          self.mads_hold_counter = 0
         if self.acc_mads_combo:
           if not self.prev_acc_mads_combo and ret.cruiseState.enabled:
             self.madsEnabled = True
@@ -163,6 +171,7 @@ class CarState(CarStateBase):
     else:
       self.madsEnabled = False
       self.accEnabled = False
+      self.mads_hold_counter = 0
 
     ret.gapAdjustCruiseTr = self.gap_adjust_cruise_tr
 

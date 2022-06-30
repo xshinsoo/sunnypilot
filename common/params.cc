@@ -219,6 +219,10 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"UploadRaw", PERSISTENT},
     {"UploadHiRes", PERSISTENT},
     {"Version", PERSISTENT},
+<<<<<<< HEAD
+=======
+    {"VisionCurveLaneless", PERSISTENT},
+>>>>>>> upstream/0.8.14-prod-c3
     {"VisionRadarToggle", PERSISTENT},
     {"VisionTurnSpeedControl", PERSISTENT},
     {"VwAccType", PERSISTENT},

@@ -53,7 +53,11 @@ class NvgWindow : public CameraViewWidget {
   Q_PROPERTY(float lead_v_rel MEMBER lead_v_rel);
   Q_PROPERTY(float angleSteers MEMBER angleSteers);
   Q_PROPERTY(float steerAngleDesired MEMBER steerAngleDesired);
+<<<<<<< HEAD
   Q_PROPERTY(int distanceTraveled MEMBER distanceTraveled);
+=======
+  Q_PROPERTY(int memoryUsagePercent MEMBER memoryUsagePercent);
+>>>>>>> upstream/0.8.14-prod-c3
   Q_PROPERTY(bool devUiEnabled MEMBER devUiEnabled);
   Q_PROPERTY(int devUiRow MEMBER devUiRow);
   Q_PROPERTY(float gpsAccuracy MEMBER gpsAccuracy);
@@ -147,7 +151,11 @@ private:
   float lead_v_rel = 0;
   float angleSteers = 0;
   float steerAngleDesired = 0;
+<<<<<<< HEAD
   int distanceTraveled = 0;
+=======
+  int memoryUsagePercent;
+>>>>>>> upstream/0.8.14-prod-c3
   bool devUiEnabled;
   int devUiRow;
   float gpsAccuracy;

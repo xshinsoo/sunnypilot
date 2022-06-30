@@ -39,6 +39,10 @@ class LateralPlanner:
     self.second = 0.0
     self.standstill_elapsed = 0.0
     self.stand_still = False
+<<<<<<< HEAD
+=======
+    self.vision_curve_laneless = Params().get_bool("VisionCurveLaneless")
+>>>>>>> upstream/0.8.14-prod-c3
 
   def reset_mpc(self, x0=np.zeros(4)):
     self.x0 = x0
@@ -122,6 +126,10 @@ class LateralPlanner:
 
   def get_dynamic_lane_profile(self, sm):
     longitudinal_plan = sm['longitudinalPlan']
+<<<<<<< HEAD
+=======
+    self.vision_curve_laneless = Params().get_bool("VisionCurveLaneless")
+>>>>>>> upstream/0.8.14-prod-c3
     if self.dynamic_lane_profile == 1:
       return True
     if self.dynamic_lane_profile == 0:
@@ -131,10 +139,19 @@ class LateralPlanner:
       if self.DH.lane_change_state == LaneChangeState.off:
         # laneline probability too low, we switch to laneless mode
         if (self.LP.lll_prob + self.LP.rll_prob)/2 < 0.3 \
+<<<<<<< HEAD
           or longitudinal_plan.visionCurrentLatAcc > 1.0 or longitudinal_plan.visionMaxPredLatAcc > 1.4:
           self.dynamic_lane_profile_status_buffer = True
         if (self.LP.lll_prob + self.LP.rll_prob)/2 > 0.5 \
           and longitudinal_plan.visionCurrentLatAcc < 0.6 and longitudinal_plan.visionMaxPredLatAcc < 0.7:
+=======
+          or ((longitudinal_plan.visionCurrentLatAcc > 1.0 or longitudinal_plan.visionMaxPredLatAcc > 1.4)
+          and self.vision_curve_laneless):
+          self.dynamic_lane_profile_status_buffer = True
+        if (self.LP.lll_prob + self.LP.rll_prob)/2 > 0.5 \
+          and ((longitudinal_plan.visionCurrentLatAcc < 0.6 and longitudinal_plan.visionMaxPredLatAcc < 0.7)
+          or not self.vision_curve_laneless):
+>>>>>>> upstream/0.8.14-prod-c3
           self.dynamic_lane_profile_status_buffer = False
         if self.dynamic_lane_profile_status_buffer: # in buffer mode, always laneless
           return True
