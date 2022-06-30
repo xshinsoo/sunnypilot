@@ -274,6 +274,9 @@ class CarState(CarStateBase):
     self._update_traffic_signals(cp_cam)
     ret.cruiseState.speedLimit = self._calculate_speed_limit()
 
+    if not self.CP.openpilotLongitudinalControl:
+      self.stock_resume_ready = (cp.vl["ACC_CONTROL"]["RELEASE_STANDSTILL"] == 1 and self.pcm_acc_status == 7)
+
     return ret
 
   def _init_traffic_signals(self):
@@ -433,6 +436,10 @@ class CarState(CarStateBase):
         ("R_APPROACHING", "BSM"),
       ]
       checks.append(("BSM", 1))
+
+    if not CP.openpilotLongitudinalControl:
+      signals.append(("RELEASE_STANDSTILL", "ACC_CONTROL")),
+      checks.append(("ACC_CONTROL", 33)),
 
     signals.append(("DISTANCE_LINES", "PCM_CRUISE_SM", 0))
     checks.append(("PCM_CRUISE_SM", 1))
