@@ -1,4 +1,4 @@
-sunnypilot - Version 0.8.16 (2022-07-16)
+sunnypilot - Version 0.8.16 (2022-07-16) 
 ========================
 * Sync with commaai's master branches
 * NEW❗: Add toggle to pause lateral actuation below 30 MPH / 50 KM/H
