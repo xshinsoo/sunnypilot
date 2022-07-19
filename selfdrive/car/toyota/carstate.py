@@ -211,6 +211,11 @@ class CarState(CarStateBase):
       ret.leftBlindspot = (cp.vl["BSM"]["L_ADJACENT"] == 1) or (cp.vl["BSM"]["L_APPROACHING"] == 1)
       ret.rightBlindspot = (cp.vl["BSM"]["R_ADJACENT"] == 1) or (cp.vl["BSM"]["R_APPROACHING"] == 1)
 
+    if not self.CP.openpilotLongitudinalControl and self.CP.carFingerprint not in (CAR.LEXUS_IS, CAR.LEXUS_RC):
+      self.stock_resume_ready = (cp.vl["ACC_CONTROL"]["RELEASE_STANDSTILL"] == 1 and self.pcm_acc_status == 7)
+    else:
+      self.stock_resume_ready = False
+
     return ret
 
   @staticmethod
@@ -278,6 +283,10 @@ class CarState(CarStateBase):
       signals.append(("LOW_SPEED_LOCKOUT", "PCM_CRUISE_2"))
       checks.append(("PCM_CRUISE_2", 33))
 
+    if not CP.openpilotLongitudinalControl and CP.carFingerprint not in (CAR.LEXUS_IS, CAR.LEXUS_RC):
+      signals.append(("RELEASE_STANDSTILL", "ACC_CONTROL"))
+      checks.append(("ACC_CONTROL", 33))
+
     # add gas interceptor reading if we are using it
     if CP.enableGasInterceptor:
       signals.append(("INTERCEPTOR_GAS", "GAS_SENSOR"))
@@ -297,6 +306,7 @@ class CarState(CarStateBase):
       signals += [
         ("ACC_TYPE", "ACC_CONTROL"),
         ("FCW", "ACC_HUD"),
+        ("RELEASE_STANDSTILL", "ACC_CONTROL"),
       ]
       checks += [
         ("ACC_CONTROL", 33),
